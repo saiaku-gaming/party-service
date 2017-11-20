@@ -1,5 +1,6 @@
 package com.valhallagame.partyserviceserver.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +52,7 @@ public class PartyController {
 
 	@RequestMapping(path = "/invite-person", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> invitePerson(@RequestBody InvitePersonParameter input) {
+	public ResponseEntity<?> invitePerson(@RequestBody InvitePersonParameter input) throws IOException {
 		Optional<Person> optReceiver = PersonServiceClient.get().getPerson(input.getReceiverUsername()).getResponse();
 
 		if (!optReceiver.isPresent()) {
@@ -114,7 +115,7 @@ public class PartyController {
 
 	@RequestMapping(path = "/cancel-person-invite", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> cancelPersonInvite(@RequestBody CancelPersonInviteParameter input) {
+	public ResponseEntity<?> cancelPersonInvite(@RequestBody CancelPersonInviteParameter input) throws IOException {
 		if (!PersonServiceClient.get().getPerson(input.getCanceleeUsername()).isOk()) {
 			return JS.message(HttpStatus.NOT_FOUND,
 					"Could not find person with username " + input.getCanceleeUsername());

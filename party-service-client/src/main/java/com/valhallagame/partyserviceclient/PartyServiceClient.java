@@ -2,6 +2,7 @@ package com.valhallagame.partyserviceclient;
 
 import java.io.IOException;
 
+import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestCaller;
 import com.valhallagame.common.RestResponse;
 import com.valhallagame.partyserviceclient.model.AcceptParameter;
@@ -13,7 +14,7 @@ import com.valhallagame.partyserviceclient.model.LeavePartyParameter;
 public class PartyServiceClient {
 	private static PartyServiceClient partyServiceClient;
 
-	private String partyServiceServerUrl = "http://localhost:1237";
+	private String partyServiceServerUrl = "http://localhost:" + DefaultServicePortMappings.PARTY_SERVICE_PORT;
 	private RestCaller restCaller;
 
 	private PartyServiceClient() {
