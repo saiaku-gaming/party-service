@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.valhallagame.common.JS;
+import com.valhallagame.common.rabbitmq.NotificationMessage;
+import com.valhallagame.common.rabbitmq.RabbitMQRouting;
 import com.valhallagame.partyserviceserver.message.AcceptParameter;
 import com.valhallagame.partyserviceserver.message.CancelPersonInviteParameter;
 import com.valhallagame.partyserviceserver.message.DeclineParameter;
@@ -30,6 +33,9 @@ import com.valhallagame.personserviceclient.model.Person;
 @Controller
 @RequestMapping(path = "/v1/party")
 public class PartyController {
+
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 
 	@Autowired
 	private PartyService partyService;
@@ -145,9 +151,8 @@ public class PartyController {
 				partyService.deleteParty(cancelerParty);
 			}
 
-			// String reason = "Cancel an invite for a person to party";
-			// TODO add notification
-			// notifyEveryone(inviteeParty, reason, invitedPerson);
+			notifyEveryone(cancelerParty, "Cancel an invite for a person to party", RabbitMQRouting.Party.CANCEL_INVITE,
+					input.getCanceleeUsername());
 			return JS.message(HttpStatus.OK, "Removed invite to person with username " + input.getCancelerUsername());
 		}
 	}
@@ -182,9 +187,7 @@ public class PartyController {
 			party.setActive(true);
 		}
 
-		// add notification
-		// String reason = "Accept invite";
-		// notifyEveryone(party, reason, user);
+		notifyEveryone(party, "Accept invite", RabbitMQRouting.Party.ACCEPT_INVITE);
 
 		party = partyService.saveParty(party);
 
@@ -220,8 +223,9 @@ public class PartyController {
 
 		partyInviteService.deletePartyInvite(optPartyInvite.get());
 
-		// TODO add notification
-		// notifyEveryone(party, "Decline an invite to party.", user);
+		notifyEveryone(party, "Decline an invite to party.", RabbitMQRouting.Party.DECLINE_INVITE,
+				input.getDeclinerUsername());
+
 		return JS.message(HttpStatus.OK, "Removed invite");
 	}
 
@@ -236,10 +240,8 @@ public class PartyController {
 		Party party = optParty.get();
 
 		if (party.getPartyMembers().size() <= 2) {
-
 			partyService.deleteParty(party);
-			// TODO add notification
-			// notifyEveryone(party, "leave party", user);
+			notifyEveryone(party, "leave party", RabbitMQRouting.Party.LEAVE, input.getLeaverUsername());
 
 			return JS.message(HttpStatus.OK, "Party disbanded.");
 		} else {
@@ -249,8 +251,7 @@ public class PartyController {
 				party.setLeader(newPartyLeader);
 			}
 			partyService.saveParty(party);
-			// TODO add notification
-			// notifyEveryone(party, "leave party", user);
+			notifyEveryone(party, "leave party", RabbitMQRouting.Party.LEAVE, input.getLeaverUsername());
 			return JS.message(HttpStatus.OK, "User removed from party.");
 		}
 	}
@@ -357,5 +358,17 @@ public class PartyController {
 
 		partyInviteService.savePartyInvite(new PartyInvite(party, senderUsername, receiverUsername));
 		return JS.message(HttpStatus.OK, "Party invite sent");
+	}
+
+	private void notifyEveryone(Party party, String reason, RabbitMQRouting.Party routingKey, String... users) {
+		for (String username : party.getPartyMembers()) {
+			rabbitTemplate.convertAndSend(RabbitMQRouting.Exchange.PARTY.name(), routingKey.name(),
+					new NotificationMessage(username, reason));
+		}
+
+		for (String username : users) {
+			rabbitTemplate.convertAndSend(RabbitMQRouting.Exchange.PARTY.name(), routingKey.name(),
+					new NotificationMessage(username, reason));
+		}
 	}
 }
