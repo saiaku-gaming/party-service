@@ -1,8 +1,5 @@
 package com.valhallagame.partyserviceclient.model;
 
-import java.util.List;
-import java.util.Optional;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PartyAndInvites {
-	Optional<Party> party;
-	List<PartyInvite> invites;
+public class PartyInvite {
+	private Integer id;
+	private Party party;
+	private String sender;
+	private String receiver;
 }

@@ -76,10 +76,12 @@ public class PartyServiceClient {
 	}
 
 	public RestResponse<Party> getParty(String username) throws IOException {
-		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party", new GetPartyParameter(username), Party.class);		
+		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party", new GetPartyParameter(username),
+				Party.class);
 	}
-	
+
 	public RestResponse<PartyAndInvites> getPartyAndInvites(String username) throws IOException {
-		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party-and-invites", new GetPartyAndInvitesParameter(username), PartyAndInvites.class);		
+		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party-and-invites",
+				new GetPartyAndInvitesParameter(username), PartyAndInvites.class);
 	}
 }
