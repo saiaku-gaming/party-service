@@ -8,10 +8,12 @@ import com.valhallagame.common.RestResponse;
 import com.valhallagame.partyserviceclient.model.AcceptParameter;
 import com.valhallagame.partyserviceclient.model.CancelPersonInviteParameter;
 import com.valhallagame.partyserviceclient.model.DeclineParameter;
+import com.valhallagame.partyserviceclient.model.GetPartyParameter;
 import com.valhallagame.partyserviceclient.model.InvitePersonParameter;
 import com.valhallagame.partyserviceclient.model.KickFromPartyParameter;
 import com.valhallagame.partyserviceclient.model.LeavePartyParameter;
 import com.valhallagame.partyserviceclient.model.PromoteToLeaderParameter;
+import com.valhallagame.partyserviceclient.model.Party;
 
 public class PartyServiceClient {
 	private static PartyServiceClient partyServiceClient;
@@ -69,5 +71,9 @@ public class PartyServiceClient {
 	public RestResponse<String> kickFromParty(String kicker, String kickee) throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/kick-from-party",
 				new KickFromPartyParameter(kicker, kickee), String.class);
+	}
+
+	public RestResponse<Party> getParty(String member) throws IOException {
+		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party", new GetPartyParameter(member), Party.class);
 	}
 }
