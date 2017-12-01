@@ -1,12 +1,15 @@
 package com.valhallagame.partyserviceclient.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class GetPartyParameter {
-	private String username;
+@NoArgsConstructor
+public class PartyAndInvites {
+	Party party;
+	List<String> invites;
 }

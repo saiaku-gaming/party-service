@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetPartyParameter {
+public class GetPartyAndInvitesParameter {
 	private String username;
 }
