@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PartyInvite {
-	private Integer id;
-	private Party party;
+	private Integer partyId;
 	private String sender;
 	private String receiver;
 }

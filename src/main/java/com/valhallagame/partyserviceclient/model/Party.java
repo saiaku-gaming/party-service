@@ -13,5 +13,6 @@ public class Party {
 	private Integer id;
 	private String leader;
 	private List<String> partyMembers;
+	private List<PartyInvite> sentInvites;
 	private boolean active;
 }
