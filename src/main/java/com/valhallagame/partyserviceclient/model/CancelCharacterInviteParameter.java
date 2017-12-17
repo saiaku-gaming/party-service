@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PromoteToLeaderParameter {
-	private String promoterUsername;
-	private String promoteeUsername;
+public class CancelCharacterInviteParameter {
+	private String cancelerUsername;
+	private String canceleeCharacterName;
 }

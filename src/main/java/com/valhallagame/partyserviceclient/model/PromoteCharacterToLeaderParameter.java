@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KickFromPartyParameter {
-	private String kickerUsername;
-	private String kickeeUsername;
+public class PromoteCharacterToLeaderParameter {
+	private String promoterUsername;
+	private String promoteeUsername;
 }
