@@ -10,6 +10,7 @@ import com.valhallagame.partyserviceclient.model.CancelPersonInviteParameter;
 import com.valhallagame.partyserviceclient.model.DeclineParameter;
 import com.valhallagame.partyserviceclient.model.GetPartyAndInvitesParameter;
 import com.valhallagame.partyserviceclient.model.GetPartyParameter;
+import com.valhallagame.partyserviceclient.model.InviteCharacterParameter;
 import com.valhallagame.partyserviceclient.model.InvitePersonParameter;
 import com.valhallagame.partyserviceclient.model.KickFromPartyParameter;
 import com.valhallagame.partyserviceclient.model.LeavePartyParameter;
@@ -44,6 +45,11 @@ public class PartyServiceClient {
 				new InvitePersonParameter(senderUsername, receiverUsername), String.class);
 	}
 
+	public RestResponse<String> inviteCharacter(String senderUsername, String characterName) throws IOException {
+		return restCaller.postCall(partyServiceServerUrl + "/v1/party/invite-character",
+				new InviteCharacterParameter(senderUsername, characterName), String.class);
+	}
+	
 	public RestResponse<String> cancelPersonInvite(String cancelerUsername, String canceleeUsername)
 			throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/cancel-person-invite",
@@ -84,4 +90,5 @@ public class PartyServiceClient {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party-and-invites",
 				new GetPartyAndInvitesParameter(username), PartyAndInvites.class);
 	}
+
 }
