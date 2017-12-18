@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PartyMemberResponse {
-	String username;
-	String characterName;
+	String displayUsername;
+	String displayCharacterName;
 }

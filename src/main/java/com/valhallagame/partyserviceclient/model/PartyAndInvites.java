@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PartyAndInvites {
-	Optional<Party> party;
-	List<PartyInvite> receivedInvites;
+	Optional<PartyResponse> party;
+	List<PartyInviteResponse> receivedInvites;
 }
