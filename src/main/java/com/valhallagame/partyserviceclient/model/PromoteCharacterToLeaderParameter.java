@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PromoteCharacterToLeaderParameter {
 	private String promoterUsername;
-	private String promoteeUsername;
+	private String promoteeCharacterName;
 }
