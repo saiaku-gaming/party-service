@@ -1,4 +1,6 @@
-package com.valhallagame.partyserviceclient.model;
+package com.valhallagame.partyserviceclient.message;
+
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeclineParameter {
+	@NotNull
 	private String declinerUsername;
+	@NotNull
 	private Integer partyId;
 }
