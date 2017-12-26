@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class PartyMemberResponse {
-	String displayUsername;
-	String displayCharacterName;
+@AllArgsConstructor
+public class PartyInviteData {
+	private Integer id;
+	private Integer partyId;
+	private PartyMemberData sender;
+	private PartyMemberData receiver;
 }

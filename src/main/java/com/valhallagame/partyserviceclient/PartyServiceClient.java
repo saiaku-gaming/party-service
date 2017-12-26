@@ -18,8 +18,8 @@ import com.valhallagame.partyserviceclient.message.KickPersonFromPartyParameter;
 import com.valhallagame.partyserviceclient.message.LeavePartyParameter;
 import com.valhallagame.partyserviceclient.message.PromoteCharacterToLeaderParameter;
 import com.valhallagame.partyserviceclient.message.PromotePersonToLeaderParameter;
-import com.valhallagame.partyserviceclient.model.PartyAndInvites;
-import com.valhallagame.partyserviceclient.model.PartyResponse;
+import com.valhallagame.partyserviceclient.model.PartyAndInvitesData;
+import com.valhallagame.partyserviceclient.model.PartyData;
 
 public class PartyServiceClient {
 	private static PartyServiceClient partyServiceClient;
@@ -100,14 +100,14 @@ public class PartyServiceClient {
 				new KickPersonFromPartyParameter(kicker, kickee), String.class);
 	}
 
-	public RestResponse<PartyResponse> getParty(String username) throws IOException {
+	public RestResponse<PartyData> getParty(String username) throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party", new GetPartyParameter(username),
-				PartyResponse.class);
+				PartyData.class);
 	}
 
-	public RestResponse<PartyAndInvites> getPartyAndInvites(String username) throws IOException {
+	public RestResponse<PartyAndInvitesData> getPartyAndInvites(String username) throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party-and-invites",
-				new GetPartyAndInvitesParameter(username), PartyAndInvites.class);
+				new GetPartyAndInvitesParameter(username), PartyAndInvitesData.class);
 	}
 
 }

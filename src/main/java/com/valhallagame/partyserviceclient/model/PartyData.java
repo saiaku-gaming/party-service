@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Party {
+public class PartyData {
 	private Integer id;
-	private String leader;
-	private List<String> partyMembers;
-	private List<PartyInvite> sentInvites;
+	private PartyMemberData leader;
+	private List<PartyMemberData> partyMembers;
+	private List<PartyInviteData> sentInvites;
 	private boolean active;
 }
