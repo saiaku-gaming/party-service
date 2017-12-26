@@ -66,7 +66,7 @@ public class PartyServiceClient {
 	}
 
 	public RestResponse<String> acceptInvite(String accpeterUsername, Integer partyId) throws IOException {
-		return restCaller.postCall(partyServiceServerUrl + "/v1/party/accpet-invite",
+		return restCaller.postCall(partyServiceServerUrl + "/v1/party/accept-invite",
 				new AcceptParameter(accpeterUsername, partyId), String.class);
 	}
 
