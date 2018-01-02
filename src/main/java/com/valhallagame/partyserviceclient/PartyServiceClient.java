@@ -10,6 +10,7 @@ import com.valhallagame.partyserviceclient.message.CancelCharacterInviteParamete
 import com.valhallagame.partyserviceclient.message.CancelPersonInviteParameter;
 import com.valhallagame.partyserviceclient.message.DeclineParameter;
 import com.valhallagame.partyserviceclient.message.GetPartyAndInvitesParameter;
+import com.valhallagame.partyserviceclient.message.GetPartyByIdParameter;
 import com.valhallagame.partyserviceclient.message.GetPartyParameter;
 import com.valhallagame.partyserviceclient.message.InviteCharacterParameter;
 import com.valhallagame.partyserviceclient.message.InvitePersonParameter;
@@ -52,13 +53,13 @@ public class PartyServiceClient {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/invite-character",
 				new InviteCharacterParameter(senderUsername, characterName), String.class);
 	}
-	
+
 	public RestResponse<String> cancelCharacterInvite(String cancelerUsername, String canceleeCharacterName)
 			throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/cancel-character-invite",
 				new CancelCharacterInviteParameter(cancelerUsername, canceleeCharacterName), String.class);
 	}
-	
+
 	public RestResponse<String> cancelPersonInvite(String cancelerUsername, String canceleeUsername)
 			throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/cancel-person-invite",
@@ -84,8 +85,9 @@ public class PartyServiceClient {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/promote-person-to-leader",
 				new PromotePersonToLeaderParameter(promoter, promotee), String.class);
 	}
-	
-	public RestResponse<String> promoteCharacterToLeader(String promoter, String promoteeCharacterName) throws IOException {
+
+	public RestResponse<String> promoteCharacterToLeader(String promoter, String promoteeCharacterName)
+			throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/promote-character-to-leader",
 				new PromoteCharacterToLeaderParameter(promoter, promoteeCharacterName), String.class);
 	}
@@ -94,7 +96,7 @@ public class PartyServiceClient {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/kick-character-from-party",
 				new KickCharacterFromPartyParameter(kicker, kickeeCharacterName), String.class);
 	}
-	
+
 	public RestResponse<String> kickPersonFromParty(String kicker, String kickee) throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/kick-person-from-party",
 				new KickPersonFromPartyParameter(kicker, kickee), String.class);
@@ -103,6 +105,11 @@ public class PartyServiceClient {
 	public RestResponse<PartyData> getParty(String username) throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party", new GetPartyParameter(username),
 				PartyData.class);
+	}
+
+	public RestResponse<PartyData> getPartyById(Integer partyId) throws IOException {
+		return restCaller.postCall(partyServiceServerUrl + "/v1/party/get-party-by-id",
+				new GetPartyByIdParameter(partyId), PartyData.class);
 	}
 
 	public RestResponse<PartyAndInvitesData> getPartyAndInvites(String username) throws IOException {
