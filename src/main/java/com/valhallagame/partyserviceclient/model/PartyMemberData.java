@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class PartyMemberData {
 	String displayUsername;
 	String displayCharacterName;
+	boolean online;
 }
