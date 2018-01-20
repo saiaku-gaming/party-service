@@ -2,6 +2,8 @@ package com.valhallagame.partyserviceclient.message;
 
 import javax.validation.constraints.NotNull;
 
+import com.valhallagame.common.validation.CheckLowercase;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DeclineParameter {
 	@NotNull
+	@CheckLowercase
 	private String declinerUsername;
 	@NotNull
 	private Integer partyId;
