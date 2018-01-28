@@ -83,7 +83,7 @@ public class PartyServiceClient {
 
 	public RestResponse<String> promotePersonToLeader(String promoter, String promotee) throws IOException {
 		return restCaller.postCall(partyServiceServerUrl + "/v1/party/promote-person-to-leader",
-				new PromotePersonToLeaderParameter(promoter, promotee), String.class);
+				new PromotePersonToLeaderParameter(promoter, promotee), String.class); 
 	}
 
 	public RestResponse<String> promoteCharacterToLeader(String promoter, String promoteeCharacterName)

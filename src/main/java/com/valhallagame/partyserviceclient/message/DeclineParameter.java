@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class DeclineParameter {
 	@NotNull
 	@CheckLowercase
-	private String declinerUsername;
+	private String username;
 	@NotNull
 	private Integer partyId;
 }

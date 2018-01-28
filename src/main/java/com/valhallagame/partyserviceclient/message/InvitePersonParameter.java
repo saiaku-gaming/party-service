@@ -2,6 +2,7 @@ package com.valhallagame.partyserviceclient.message;
 
 import javax.validation.constraints.NotNull;
 
+import com.valhallagame.common.ExposedNameInYmer;
 import com.valhallagame.common.validation.CheckLowercase;
 
 import lombok.AllArgsConstructor;
@@ -14,8 +15,9 @@ import lombok.NoArgsConstructor;
 public class InvitePersonParameter {
 	@NotNull
 	@CheckLowercase
-	private String senderUsername;
+	private String username;
 	@NotNull
 	@CheckLowercase
+	@ExposedNameInYmer("username")
 	private String receiverUsername;
 }

@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class LeavePartyParameter {
 	@NotNull
 	@CheckLowercase
-	private String leaverUsername;
+	private String username;
 }

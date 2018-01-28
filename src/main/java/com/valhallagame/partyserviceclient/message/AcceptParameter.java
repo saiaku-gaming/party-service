@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class AcceptParameter {
 	@NotNull
 	@CheckLowercase
-	private String accepterUsername;
+	private String username;
 	@NotNull
 	private Integer partyId;
 }
