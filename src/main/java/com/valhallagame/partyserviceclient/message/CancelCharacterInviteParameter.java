@@ -2,7 +2,6 @@ package com.valhallagame.partyserviceclient.message;
 
 import javax.validation.constraints.NotNull;
 
-import com.valhallagame.common.ExposedNameInYmer;
 import com.valhallagame.common.validation.CheckLowercase;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +18,5 @@ public class CancelCharacterInviteParameter {
 	
 	@NotNull
 	@CheckLowercase
-	@ExposedNameInYmer("characterName")
-	private String canceleeCharacterName;
+	private String displayCharacterName;
 }
