@@ -17,6 +17,5 @@ public class CancelCharacterInviteParameter {
 	private String username;
 	
 	@NotNull
-	@CheckLowercase
 	private String displayCharacterName;
 }

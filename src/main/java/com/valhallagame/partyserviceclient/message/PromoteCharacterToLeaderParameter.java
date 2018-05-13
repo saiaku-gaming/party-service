@@ -16,6 +16,5 @@ public class PromoteCharacterToLeaderParameter {
 	@CheckLowercase
 	private String username;
 	@NotNull
-	@CheckLowercase
 	private String displayCharacterName;
 }
