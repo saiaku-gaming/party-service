@@ -9,31 +9,31 @@
 	</parent>
 
 	<artifactId>party-service-client</artifactId>
-	<version>1.4</version>
+	<version>1.5</version>
 	<packaging>jar</packaging>
 	<groupId>com.valhallagame.valhalla</groupId>
 
 	<distributionManagement>
 		<repository>
 			<id>central</id>
-        	<name>a60597f462c3-releases</name>
-        	<url>https://artifactory.valhalla-game.com/libs-release-local</url>
+			<name>artifactory-7bbbbf9cff-rvsdd-releases</name>
+			<url>https://artifactory.valhalla-game.com/artifactory/libs-release-local</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
-	        <name>a60597f462c3-snapshots</name>
-	        <url>https://artifactory.valhalla-game.com/libs-snapshot-local</url>
+			<name>artifactory-7bbbbf9cff-rvsdd-snapshots</name>
+			<url>https://artifactory.valhalla-game.com/artifactory/libs-snapshot-local</url>
 		</snapshotRepository>
 	</distributionManagement>
 
 	<repositories>
 		<repository>
 			<id>valhalla-release</id>
-			<url>https://artifactory.valhalla-game.com/libs-release</url>
+			<url>https://artifactory.valhalla-game.com/artifactory/libs-release</url>
 		</repository>
 		<repository>
 			<id>valhalla-snapshot</id>
-			<url>https://artifactory.valhalla-game.com/libs-snapshot</url>
+			<url>https://artifactory.valhalla-game.com/artifactory/libs-snapshot</url>
 		</repository>
 	</repositories>
 
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.valhallagame.valhalla</groupId>
 			<artifactId>common</artifactId>
-            <version>1.14</version>
+            <version>1.17</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
